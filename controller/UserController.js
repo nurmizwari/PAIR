@@ -1,10 +1,16 @@
-const { User } = require('../models')
+const { Store,User } = require('../models');
+
 
 
 class UserController{
 
     static registerForm(req, res){
-        res.render('register')
+        Store.findAll().then((result) => {  
+            // res.send(result)    
+            res.render('register',{result})
+        }).catch((err) => {
+            res.send(err)
+        });
     }
     static postRegister(req, res){
         // cretae user baru yang isinya username password role
