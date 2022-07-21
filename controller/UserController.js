@@ -8,7 +8,9 @@ class UserController {
 
     //
     static Home(req, res) {
-        let option = { include: Store }
+        let option = { include: Store, order: [["name", "asc"]] }
+        let role = req.session.role
+
 
         let name = req.query.name
         if (name) {
@@ -16,19 +18,36 @@ class UserController {
         }
         Product.findAll(option)
             .then((result) => {
-                res.render('home', { result, name })
+                res.render('home', { result, name, role })
             })
             .catch((err) => {
                 res.send(err)
             });
     }
 
+    static addStock(req, res) {
+        let id = req.params.productId
+        // console.log(id);
+        // console.log(req.params);
+        Product.increment({
+            stock: 1
+        }, { where: { id } })
+            .then(() => {
+                res.redirect('/home')
+            }).catch((err) => {
+                res.send(err)
+            });
+    }
+
+
     static registerForm(req, res) {
+        let errors = req.query.errors
+
         Store.findAll()
             .then((result) => {
                 // res.send(result)    
 
-                res.render('register', { result })
+                res.render('register', { result, errors })
             })
             .catch((err) => {
                 res.send(err)
@@ -46,7 +65,13 @@ class UserController {
                 nodeMail(email)
                 res.redirect('/login')
             }).catch((err) => {
-                res.send(err)
+                const errors = err.errors
+                let temp = []
+                errors.map(e => {
+                    temp.push(e.message)
+                })
+                let errorList = temp.join('%')
+                res.redirect(`/register?errors=${errorList}`)
             });
     }
 
@@ -66,6 +91,10 @@ class UserController {
         // 4 kalo pw sesuai maaka redirect ke home
 
         const { userName, password } = req.body
+        if (userName.length == 0 || password.length == 0) {
+            const error = 'Username or Password cannot be empty'
+            return res.redirect(`/login?error=${error}`)
+        }
         User.findOne({ where: { userName } })
             .then(user => {
                 if (user) {
