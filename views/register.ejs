@@ -19,6 +19,10 @@
   <div class="container">
     <h1>Register</h1>
     <form action="/register" method="post">
+      <div class="mb-3 sm-3">
+        <label for="userName" class="form-label">User Name</label>
+        <input type="text" class="form-control" name="userName">
+      </div>
 
       <div class="mb-3 sm-3">
         <label for="email" class="form-label">Email</label>
@@ -51,10 +55,7 @@
         </select>
 
       </div>
-      <div class="mb-3 sm-3">
-        <label for="userName" class="form-label">User Name</label>
-        <input type="text" class="form-control" name="userName">
-      </div>
+
 
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>

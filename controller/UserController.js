@@ -1,23 +1,26 @@
 const { Store, User, Product } = require('../models');
 const bcrypt = require("bcryptjs")
 const { nodeMail } = require('../helper/nodemailer')
-
+const { Op } = require('sequelize')
 
 class UserController {
 
 
+    //
     static Home(req, res) {
-        Product.findAll({
-            include: Store
-        })
+        let option = { include: Store }
+
+        let name = req.query.name
+        if (name) {
+            option['where'] = { name: { [Op.iLike]: `%${name}%` } }
+        }
+        Product.findAll(option)
             .then((result) => {
-                res.render('home', { result })
+                res.render('home', { result, name })
             })
             .catch((err) => {
                 res.send(err)
             });
-
-
     }
 
     static registerForm(req, res) {
@@ -31,6 +34,7 @@ class UserController {
                 res.send(err)
             });
     }
+
     static postRegister(req, res) {
         // cretae user baru yang isinya username password role
 

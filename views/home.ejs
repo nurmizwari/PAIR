@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,40 +12,49 @@
 
 </head>
 
+
+<div class="search-container">
+    <form action="/home">
+        <input type="text" placeholder="Search" name="name" value="<%= name%>">
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
 <body>
-    <%- include('partials/navbar.ejs') %>
-        <table class="table table-borderless">
+
+    <table class="table table-borderless">
+        <tr>
+            <th>Name</th>
+            <th>Stock</th>
+            <th>Nama Toko</th>
+            <th class="text-center">Action</th>
+
+        </tr>
+        <%result.map(e=>{ %>
+
             <tr>
-                <th>Name</th>
-                <th>Stock</th>
-                <th>Nama Toko</th>
-                <th class="text-center">Action</th>
-
+                <td>
+                    <%= e.name %>
+                </td>
+                <td>
+                    <%= e.stock %>
+                </td>
+                <td>
+                    <%= e.Store.name %>
+                </td>
+                <td class="text-center">
+                    <a href="/home/<%=e.id%> /delete"><button class="btn btn-danger">Delete</button></a>
+                    <a href=""><button class="btn btn-success">Add Stock</button></a>
+                </td>
             </tr>
-            <%result.map(e=>{ %>
+            <% }) %>
 
-                <tr>
-                    <td>
-                        <%= e.name %>
-                    </td>
-                    <td>
-                        <%= e.stock %>
-                    </td>
-                    <td>
-                        <%= e.Store.name %>
-                    </td>
-                    <td class="text-center">
-                        <a href="/home/<%=e.id%> /delete"><button class="btn btn-danger">Delete</button></a>
-                        <a href=""><button class="btn btn-success">Add Stock</button></a>
-                    </td>
-                </tr>
-                <% }) %>
-
-        </table>
+    </table>
 </body>
 
 
 </head>
+
 <body>
     <h1>home</h1>
     <a href="/logout"><button>logout</button></a>
