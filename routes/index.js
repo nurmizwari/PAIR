@@ -3,6 +3,11 @@ const router = require('express').Router()
 
 
 
+// router.get("/home", UserController.Home) //
+
+router.get("/home/:productId/delete", UserController.postDelete)
+
+
 
 
 
@@ -33,6 +38,7 @@ router.use(function(req, res, next){
 
   router.get("/",UserController.home)
   // route home
+
 
 
 module.exports = router

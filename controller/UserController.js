@@ -1,24 +1,41 @@
-const { Store,User } = require('../models');
-const bcrypt = require('bcryptjs')
+
+const { reset } = require('nodemon');
+const { Store, User, Product } = require('../models');
 
 
 
-class UserController{
 
-    static home(req, res){
-        res.render('home')
+class UserController {
+
+
+    static Home(req, res) {
+        Product.findAll({
+            include: Store
+        })
+            .then((result) => {
+                res.render('home', { result })
+            })
+            .catch((err) => {
+                res.send(err)
+            });
+
+
     }
 
-    static registerForm(req, res){
-        Store.findAll().then((result) => {  
-            // res.send(result)    
-            res.render('register',{result})
-        }).catch((err) => {
-            res.send(err)
-        });
+    static registerForm(req, res) {
+        Store.findAll()
+            .then((result) => {
+                // res.send(result)    
+                console.log(result);
+                res.render('register', { result })
+            })
+            .catch((err) => {
+                res.send(err)
+            });
     }
-    static postRegister(req, res){
+    static postRegister(req, res) {
         // cretae user baru yang isinya username password role
+
         const {email,password,role,StoreId,userName} = req.body
         console.log(req.body);
         // res.send(req.body)
@@ -74,6 +91,20 @@ class UserController{
                 res.redirect('/login')
             }
         })
+    }
+
+    static postDelete(req, res) {
+        let productId = +req.params.productId
+        Product.findByPk(productId)
+            .then(data => {
+                return Product.destroy({ where: { id: productId } })
+            })
+            .then(data => {
+                res.redirect(`/home`)
+            })
+            .catch(err => res.send(err))
+
+
     }
 }
 module.exports = UserController

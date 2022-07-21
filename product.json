@@ -1,0 +1,92 @@
+[
+    {
+        "id": 1,
+        "name": "Island Oasis - Raspberry",
+        "stock": "58079",
+        "StoreId": 1
+    },
+    {
+        "id": 2,
+        "name": "Wheat - Soft Kernal Of Wheat",
+        "stock": "619",
+        "StoreId": 2
+    },
+    {
+        "id": 3,
+        "name": "Cheese - Cream Cheese",
+        "stock": "20894",
+        "StoreId": 1
+    },
+    {
+        "id": 4,
+        "name": "Beef - Bones, Marrow",
+        "stock": "66",
+        "StoreId": 2
+    },
+    {
+        "id": 5,
+        "name": "Lemonade - Kiwi, 591 Ml",
+        "stock": "94",
+        "StoreId": 1
+    },
+    {
+        "id": 6,
+        "name": "Cheese - Cottage Cheese",
+        "stock": "667",
+        "StoreId": 2
+    },
+    {
+        "id": 7,
+        "name": "Tuna - Bluefin",
+        "stock": "71098",
+        "StoreId": 1
+    },
+    {
+        "id": 8,
+        "name": "Beef Tenderloin Aaa",
+        "stock": "6949",
+        "StoreId": 2
+    },
+    {
+        "id": 9,
+        "name": "Chinese Foods - Cantonese",
+        "stock": "18",
+        "StoreId": 1
+    },
+    {
+        "id": 10,
+        "name": "Nut - Cashews, Whole, Raw",
+        "stock": "54831",
+        "StoreId": 1
+    },
+    {
+        "id": 11,
+        "name": "Sugar - Fine",
+        "stock": "8613",
+        "StoreId": 1
+    },
+    {
+        "id": 12,
+        "name": "Mushroom - Shitake, Dry",
+        "stock": "4",
+        "StoreId": 2
+    },
+    {
+        "id": 13,
+        "name": "Mayonnaise - Individual Pkg",
+        "stock": "30",
+        "StoreId": 1
+    },
+    {
+        "id": 14,
+        "name": "Eggplant Italian",
+        "stock": "25",
+        "StoreId": 1
+    },
+    {
+        "id": 15,
+        "name": "Sage Ground Wiberg",
+        "stock": "2",
+        "StoreId": 1
+    }
+]
