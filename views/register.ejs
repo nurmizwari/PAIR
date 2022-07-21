@@ -12,7 +12,7 @@
   </head>
   <body>
 
-    <%= JSON.stringify(result) %> 
+    
 <div class="container">
     <h1>Register</h1>
     <form action="/register" method="post">
@@ -31,16 +31,15 @@
         </div>
         <div class="mb-3">
           <label for="role" class="form-label">Nama Store</label>
-          <select name="StoreId" id="">
-            
-
+          <select name="StoreId" >
             <option selected disabled>-- Select --</option>
             <% result.forEach((el)=>{%>
-           <option value="<% el.id %>"><% el.name %></option>            
+              
+           <option value="<%= el.id %>"><%= el.name %></option>            
             </option>
+            <%  }) %> 
           </select>
           
-      <%  }) %> 
         </div>
         <div class="mb-3 sm-3">
           <label for="userName" class="form-label">User Name</label>
