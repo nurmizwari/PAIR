@@ -1,6 +1,7 @@
 const express = require('express')
 const router = require('./routes')
 const app = express()
+const session = require('express-session')
 const port = 3000
 
 
@@ -8,6 +9,16 @@ const port = 3000
 
 app.set('view engine','ejs')
 app.use(express.urlencoded({extended:true}))
+ 
+// SET SESION //
+app.use(session({
+  secret: 'rahasia', // harus ada // untuk ngamankan session kita
+  resave: false,
+  saveUninitialized: false,
+  cookie: { 
+    secure: false,          // https
+    sameSite:true }  // untuk security dari serangan csrf attack
+}))
 
 app.use(router)
 
