@@ -1,5 +1,5 @@
 const { Store, User, Product } = require('../models');
-
+const bcrypt = require('bcryptjs')
 
 
 
@@ -16,9 +16,23 @@ class UserController {
             .catch((err) => {
                 res.send(err)
             });
-
-
+        // res.render('home')
     }
+
+    static addStock(req, res){
+        let id = req.params.productId
+        // console.log(id);
+        // console.log(req.params);
+        Product.increment({
+            stock: 1
+        },{where:{id}})
+        .then(() => {
+            res.redirect('/home')
+        }).catch((err) => {
+            res.send(err)
+        });
+    }
+
 
     static registerForm(req, res) {
         Store.findAll()
@@ -61,10 +75,14 @@ class UserController {
          // 4 kalo pw sesuai maaka redirect ke home
 
          const {userName, password} = req.body
+        //  console.log(req.body)
          User.findOne({where:{userName}})          
          .then(user => { 
+            // console.log(user)
             if (user) {
-                const isValidPassword = bcrypt.compareSync(password, user.password) // true or false
+             
+                const isValidPassword = bcrypt.compareSync(password, user.password)
+                console.log(isValidPassword) // true or false
                 if (isValidPassword) {
                    
                     req.session.userId = user.id  // SET SESSION DI CONTROLLER LOGIN
