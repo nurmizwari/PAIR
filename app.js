@@ -3,7 +3,7 @@ const express = require('express')
 const router = require('./routes')
 const app = express()
 const session = require('express-session')
-const port = 3000 || process.env.PORT
+const port = process.env.PORT || 3000
 
 
 
