@@ -3,15 +3,9 @@ const router = require('express').Router()
 
 
 
-// router.get("/home", UserController.Home) //
+ //
 
-router.get("/home/:productId/delete", UserController.postDelete)
-
-
-
-
-
-
+ 
 router.get("/register", UserController.registerForm)
 router.post("/register", UserController.postRegister)
 
@@ -21,6 +15,13 @@ router.get("/login",UserController.getForm)
 router.post("/login",UserController.loginForm)
 
 router.get('/logout',UserController.getLogOut)
+
+
+
+
+
+
+
 
 router.use(function(req, res, next){
     console.log(req.session)
@@ -36,7 +37,10 @@ router.use(function(req, res, next){
     }
   })
 
-  router.get("/",UserController.home)
+router.get("/home", UserController.Home)
+  
+router.get("/home/:productId/delete", UserController.postDelete)
+//   router.get("/",UserController.home)
   // route home
 
 

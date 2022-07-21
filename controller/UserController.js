@@ -1,5 +1,3 @@
-
-const { reset } = require('nodemon');
 const { Store, User, Product } = require('../models');
 
 
@@ -26,7 +24,7 @@ class UserController {
         Store.findAll()
             .then((result) => {
                 // res.send(result)    
-                console.log(result);
+                
                 res.render('register', { result })
             })
             .catch((err) => {
@@ -37,7 +35,7 @@ class UserController {
         // cretae user baru yang isinya username password role
 
         const {email,password,role,StoreId,userName} = req.body
-        console.log(req.body);
+       
         // res.send(req.body)
         User.create({email,password,role,StoreId,userName})
         .then((newUser) => {
@@ -70,7 +68,7 @@ class UserController {
                 if (isValidPassword) {
                    
                     req.session.userId = user.id  // SET SESSION DI CONTROLLER LOGIN
-                    return res.redirect('/')
+                    return res.redirect('/home')
                 } else{
                     const error = 'invalid username or password'
                     return res.redirect(`/login?error=${error}`)
