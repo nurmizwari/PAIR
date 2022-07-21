@@ -15,44 +15,51 @@
 
 <body>
 
-    
-<div class="container">
+
+  <div class="container">
     <h1>Register</h1>
     <form action="/register" method="post">
-        
-        <div class="mb-3 sm-3">
-          <label for="email" class="form-label">Email</label>
-          <input type="text" class="form-control" name="email" >       
-        </div>
-        <div class="mb-3">
-          <label for="password" class="form-label">Password</label>
-          <input type="password" class="form-control" name="password">
-        </div>
-        <div class="mb-3">
-          <label for="role" class="form-label">Role</label>
-          <input type="text" class="form-control" name="role" >
-        </div>
-        <div class="mb-3">
-          <label for="role" class="form-label">Nama Store</label>
-          <select name="StoreId" >
-            <option selected disabled>-- Select --</option>
-            <% result.forEach((el)=>{%>
-              
-           <option value="<%= el.id %>"><%= el.name %></option>            
+
+      <div class="mb-3 sm-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="text" class="form-control" name="email">
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" class="form-control" name="password">
+      </div>
+      <div class="mb-3">
+        <label for="role" class="form-label">Role</label>
+        <select name="role">
+          <option selected disabled>-- Select --</option>
+          <option value="admin">Admin</option>
+          <option value="user">User</option>
+        </select>
+
+      </div>
+      <div class="mb-3">
+        <label for="role" class="form-label">Nama Store</label>
+        <select name="StoreId">
+          <option selected disabled>-- Select --</option>
+          <% result.forEach((el)=>{%>
+
+            <option value="<%= el.id %>">
+              <%= el.name %>
             </option>
-            <%  }) %> 
-          </select>
-          
-        </div>
-        <div class="mb-3 sm-3">
-          <label for="userName" class="form-label">User Name</label>
-          <input type="text" class="form-control" name="userName">       
-        </div>
-        
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
-    </div>
- 
+            </option>
+            <% }) %>
+        </select>
+
+      </div>
+      <div class="mb-3 sm-3">
+        <label for="userName" class="form-label">User Name</label>
+        <input type="text" class="form-control" name="userName">
+      </div>
+
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+
 
 
 
