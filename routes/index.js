@@ -15,6 +15,8 @@ router.post("/register", UserController.postRegister)
 router.get("/login",UserController.getForm)
 router.post("/login",UserController.loginForm)
 
+router.get('/logout',UserController.getLogOut)
+
 router.use(function(req, res, next){
     console.log(req.session)
     // console.log('Time:', Date.now())
