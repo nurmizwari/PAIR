@@ -43,5 +43,19 @@ class UserController {
     static loginForm(req, res) {
         res.render('login')
     }
+
+    static postDelete(req, res) {
+        let productId = +req.params.productId
+        Product.findByPk(productId)
+            .then(data => {
+                return Product.destroy({ where: { id: productId } })
+            })
+            .then(data => {
+                res.redirect(`/home`)
+            })
+            .catch(err => res.send(err))
+
+
+    }
 }
 module.exports = UserController
